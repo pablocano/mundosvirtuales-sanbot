@@ -5,7 +5,7 @@ android {
     buildToolsVersion "26.0.0"
     defaultConfig {
         applicationId "com.mundos_virtuales.sanbotmv"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -30,9 +30,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
-    compile "ca.pjer:chatter-bot-api:1.4.7"
-
     compile(name: 'QihanOpenSDK_1.1.8.0', ext: 'aar')
     compile files('libs/gson-2.2.4.jar')
     compile 'com.jakewharton:butterknife:7.0.1'

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SanbotMV</string>
+    <string name="about_mundos_virtuales">About Mundos Virtuales</string>
+    <string name="about_sanbot">About Sanbot</string>
+    <string name="toggle_loop">toggle loop</string>
+    <string name="video_test">Video Test</string>
+    <string name="btn_video_test_back">Volver</string>
+    <string name="capture">Capturar</string>
+    <string name="Salida">Salida:</string>
 </resources>

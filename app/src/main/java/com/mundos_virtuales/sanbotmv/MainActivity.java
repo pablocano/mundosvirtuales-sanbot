@@ -19,8 +19,6 @@ import com.qihancloud.opensdk.base.TopBaseActivity;
 import com.qihancloud.opensdk.beans.FuncConstant;
 import com.qihancloud.opensdk.function.beans.FaceRecognizeBean;
 import com.qihancloud.opensdk.function.beans.LED;
-import com.qihancloud.opensdk.function.beans.handmotion.NoAngleHandMotion;
-import com.qihancloud.opensdk.function.beans.handmotion.RelativeAngleHandMotion;
 import com.qihancloud.opensdk.function.beans.speech.Grammar;
 import com.qihancloud.opensdk.function.unit.HandMotionManager;
 import com.qihancloud.opensdk.function.unit.HardWareManager;
@@ -36,8 +34,6 @@ import com.qihancloud.opensdk.function.unit.interfaces.speech.RecognizeListener;
 import com.qihancloud.opensdk.function.unit.interfaces.speech.SpeakListener;
 import com.qihancloud.opensdk.function.unit.interfaces.speech.WakenListener;
 
-import com.google.code.chatterbotapi.*;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -48,8 +44,6 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
     private SliderLayout mDemoSlider;
 
     Thread thRobot;
-
-    ChatterBotSession bot1session;
 
     SpeechManager speechManager;
     HardWareManager hardWareManager;
@@ -77,15 +71,6 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
         mediaManager = (MediaManager) getUnitManager(FuncConstant.MEDIA_MANAGER);
 
         initListener();
-
-        try {
-            ChatterBotFactory factory = new ChatterBotFactory();
-            ChatterBot bot1 = factory.create(ChatterBotType.CLEVERBOT);
-            bot1session = bot1.createSession();
-        }
-        catch(Exception e) {
-            speechManager.startSpeak("Bot Error");
-        }
 
         mDemoSlider = (SliderLayout)findViewById(R.id.slider);
 
@@ -117,16 +102,6 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
         mDemoSlider.addOnPageChangeListener(this);
 
         thRobot = new Thread(new TaskRobot());
-
-        //ListView l = (ListView)findViewById(R.id.transformers);
-        //l.setAdapter(new TransformerAdapter(this));
-        //l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        //    @Override
-        //    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //        mDemoSlider.setPresetTransformer(((TextView) view).getText().toString());
-        //        Toast.makeText(MainActivity.this, ((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show();
-        //    }
-        //});
     }
 
     @Override
@@ -144,9 +119,6 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
 
                     if(!stringSpeechRecognition.equals("")) {
                         speechManager.startSpeak(stringSpeechRecognition);
-                        // String s = bot1session.think(stringSpeechRecognition);
-                        // sleep(1000);
-                        // speechManager.startSpeak(s);
                         hardWareManager.setLED(new LED(LED.PART_ALL,LED.MODE_FLICKER_RANDOM));
                         stringSpeechRecognition = "";
                     }
@@ -158,40 +130,6 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
             }
         }
     }
-
-    class TaskFace implements Runnable {
-        @Override
-        public void run() {
-            while(true) {
-
-                hardWareManager.setLED(new LED(LED.PART_ALL,LED.MODE_FLICKER_RANDOM));
-
-                handMotionManager.doRelativeAngleMotion(new RelativeAngleHandMotion(NoAngleHandMotion.PART_LEFT, 10, RelativeAngleHandMotion.ACTION_UP, 180));
-
-                handMotionManager.doRelativeAngleMotion(new RelativeAngleHandMotion(NoAngleHandMotion.PART_RIGHT, 10, RelativeAngleHandMotion.ACTION_DOWN, 120));
-
-                sleep(2000);
-
-                hardWareManager.setLED(new LED(LED.PART_ALL,LED.MODE_FLICKER_RANDOM));
-
-                handMotionManager.doRelativeAngleMotion(new RelativeAngleHandMotion(NoAngleHandMotion.PART_LEFT, 10, RelativeAngleHandMotion.ACTION_DOWN, 100));
-
-                handMotionManager.doRelativeAngleMotion(new RelativeAngleHandMotion(NoAngleHandMotion.PART_RIGHT, 10, RelativeAngleHandMotion.ACTION_UP, 120));
-
-                sleep(2000);
-
-                hardWareManager.setLED(new LED(LED.PART_ALL,LED.MODE_FLICKER_RANDOM));
-
-                handMotionManager.doRelativeAngleMotion(new RelativeAngleHandMotion(NoAngleHandMotion.PART_LEFT, 10, RelativeAngleHandMotion.ACTION_UP, 80));
-
-                handMotionManager.doRelativeAngleMotion(new RelativeAngleHandMotion(NoAngleHandMotion.PART_RIGHT, 10, RelativeAngleHandMotion.ACTION_DOWN, 120));
-
-                sleep(2000);
-
-            }
-        }
-    }
-
 
     private void sleep(int time) {
         try {
@@ -287,6 +225,10 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case R.id.action_video_test:
+                Intent intentVideoTest = new Intent(this, VideoTestActivity.class);
+                startActivity(intentVideoTest);
+                break;
             case R.id.action_loop:
                 if(thRobot.isInterrupted()) {
                     thRobot.start();
