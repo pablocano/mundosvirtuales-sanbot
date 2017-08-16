@@ -45,9 +45,9 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
 
     String stringSpeechRecognition = "";
 
-    private SliderLayout mDemoSlider;
+    //private SliderLayout mDemoSlider;
 
-    Thread thRobot;
+    //Thread thRobot;
 
     ChatterBotSession bot1session;
 
@@ -87,9 +87,9 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
             speechManager.startSpeak("Bot Error");
         }
 
-        mDemoSlider = (SliderLayout)findViewById(R.id.slider);
+        //mDemoSlider = (SliderLayout)findViewById(R.id.slider);
 
-        HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
+        /*HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
         file_maps.put("Slide1",R.drawable.slide1);
         file_maps.put("Slide2",R.drawable.slide2);
         file_maps.put("Slide3",R.drawable.slide3);
@@ -114,9 +114,9 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
         mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         mDemoSlider.setCustomAnimation(new DescriptionAnimation());
         mDemoSlider.setDuration(4000);
-        mDemoSlider.addOnPageChangeListener(this);
+        mDemoSlider.addOnPageChangeListener(this);*/
 
-        thRobot = new Thread(new TaskRobot());
+        //thRobot = new Thread(new TaskRobot());
 
         //ListView l = (ListView)findViewById(R.id.transformers);
         //l.setAdapter(new TransformerAdapter(this));
@@ -131,7 +131,7 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
 
     @Override
     protected void onMainServiceConnected() {
-        thRobot.start();
+        //thRobot.start();
     }
 
 
@@ -268,7 +268,7 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
     @Override
     protected void onStop() {
         // To prevent a memory leak on rotation, make sure to call stopAutoCycle() on the slider before activity or fragment is destroyed
-        mDemoSlider.stopAutoCycle();
+        //mDemoSlider.stopAutoCycle();
         super.onStop();
     }
 
@@ -287,14 +287,14 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.action_loop:
+            /*case R.id.action_loop:
                 if(thRobot.isInterrupted()) {
                     thRobot.start();
                 }
                 else {
                     thRobot.interrupt();
                 }
-                break;
+                break;*/
             case R.id.action_sanbot:
                 Intent browserIntent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://en.sanbot.com/index.html"));
                 startActivity(browserIntent1);

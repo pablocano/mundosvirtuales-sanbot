@@ -10,7 +10,8 @@ import android.widget.TextView;
 import java.util.Locale;
 
 /**
- * Created by PabloCano on 14/08/2017.
+ * Created by Pablo Cano on 14/08/2017.
+ * Item of the grid of sensors
  */
 
 public class SensorItemAdapter extends BaseAdapter {
@@ -18,10 +19,13 @@ public class SensorItemAdapter extends BaseAdapter {
     int sensors_values[];
     LayoutInflater inflater;
 
+    private boolean inUse;
+
     public SensorItemAdapter(Context context){
         this.context = context;
-        this.sensors_values = new int[20];
+        this.sensors_values = new int[18];
         inflater = (LayoutInflater.from(context));
+        inUse = false;
     }
 
     @Override
@@ -41,19 +45,28 @@ public class SensorItemAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup){
-        view = inflater.inflate(R.layout.sensor, null);
-        TextView sensorName = view.findViewById(R.id.sensor_name);
-        TextView sensorValue = view.findViewById(R.id.sensor_value);
+        if (view == null){
+            view = inflater.inflate(R.layout.sensor, null);
+        }
+
+        TextView sensorName = (TextView) view.findViewById(R.id.sensor_name);
+        TextView sensorValue = (TextView) view.findViewById(R.id.sensor_value);
         sensorName.setText(String.format(Locale.ENGLISH, "Sensor number %d",i));
-        sensorValue.setText(String.format(Locale.ENGLISH, "%d mts.",sensors_values[i]));
+        sensorValue.setText(String.format(Locale.ENGLISH, "%d cms.",sensors_values[i]));
         return view;
     }
 
     void setSensorValue(int sensor, int distance){
-        if (sensor >= 20)
-        {
+        if (inUse || sensor < 0 || sensor > 17) {
             return;
         }
         sensors_values[sensor] = distance;
+    }
+
+    @Override
+    public void notifyDataSetChanged(){
+        inUse = true;
+        super.notifyDataSetChanged();
+        inUse = false;
     }
 }
