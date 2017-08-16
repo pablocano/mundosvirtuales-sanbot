@@ -19,8 +19,6 @@ import com.qihancloud.opensdk.base.TopBaseActivity;
 import com.qihancloud.opensdk.beans.FuncConstant;
 import com.qihancloud.opensdk.function.beans.FaceRecognizeBean;
 import com.qihancloud.opensdk.function.beans.LED;
-import com.qihancloud.opensdk.function.beans.handmotion.NoAngleHandMotion;
-import com.qihancloud.opensdk.function.beans.handmotion.RelativeAngleHandMotion;
 import com.qihancloud.opensdk.function.beans.speech.Grammar;
 import com.qihancloud.opensdk.function.unit.HandMotionManager;
 import com.qihancloud.opensdk.function.unit.HardWareManager;
@@ -36,8 +34,6 @@ import com.qihancloud.opensdk.function.unit.interfaces.speech.RecognizeListener;
 import com.qihancloud.opensdk.function.unit.interfaces.speech.SpeakListener;
 import com.qihancloud.opensdk.function.unit.interfaces.speech.WakenListener;
 
-import com.google.code.chatterbotapi.*;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -45,14 +41,12 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
 
     String stringSpeechRecognition = "";
 
-    //private SliderLayout mDemoSlider;
+    private SliderLayout mDemoSlider;
 
-    //Thread thRobot;
-
-    ChatterBotSession bot1session;
+    Thread thRobot;
 
     SpeechManager speechManager;
-    //HardWareManager hardWareManager;
+    HardWareManager hardWareManager;
     HeadMotionManager headMotionManager;
     HandMotionManager handMotionManager;
     WheelMotionManager wheelMotionManager;
@@ -67,7 +61,7 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
         setContentView(R.layout.activity_main);
 
         speechManager = (SpeechManager) getUnitManager(FuncConstant.SPEECH_MANAGER);
-        //hardWareManager = (HardWareManager) getUnitManager(FuncConstant.HARDWARE_MANAGER);
+        hardWareManager = (HardWareManager) getUnitManager(FuncConstant.HARDWARE_MANAGER);
         headMotionManager = (HeadMotionManager) getUnitManager(FuncConstant.HEADMOTION_MANAGER);
         handMotionManager = (HandMotionManager) getUnitManager(FuncConstant.HANDMOTION_MANAGER);
         wheelMotionManager = (WheelMotionManager) getUnitManager(FuncConstant.WHEELMOTION_MANAGER);
@@ -78,18 +72,9 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
 
         initListener();
 
-        try {
-            ChatterBotFactory factory = new ChatterBotFactory();
-            ChatterBot bot1 = factory.create(ChatterBotType.CLEVERBOT);
-            bot1session = bot1.createSession();
-        }
-        catch(Exception e) {
-            speechManager.startSpeak("Bot Error");
-        }
+        mDemoSlider = (SliderLayout)findViewById(R.id.slider);
 
-        //mDemoSlider = (SliderLayout)findViewById(R.id.slider);
-
-        /*HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
+        HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
         file_maps.put("Slide1",R.drawable.slide1);
         file_maps.put("Slide2",R.drawable.slide2);
         file_maps.put("Slide3",R.drawable.slide3);
@@ -114,24 +99,14 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
         mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         mDemoSlider.setCustomAnimation(new DescriptionAnimation());
         mDemoSlider.setDuration(4000);
-        mDemoSlider.addOnPageChangeListener(this);*/
+        mDemoSlider.addOnPageChangeListener(this);
 
-        //thRobot = new Thread(new TaskRobot());
-
-        //ListView l = (ListView)findViewById(R.id.transformers);
-        //l.setAdapter(new TransformerAdapter(this));
-        //l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        //    @Override
-        //    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //        mDemoSlider.setPresetTransformer(((TextView) view).getText().toString());
-        //        Toast.makeText(MainActivity.this, ((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show();
-        //    }
-        //});
+        thRobot = new Thread(new TaskRobot());
     }
 
     @Override
     protected void onMainServiceConnected() {
-        //thRobot.start();
+        thRobot.start();
     }
 
 
@@ -144,10 +119,7 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
 
                     if(!stringSpeechRecognition.equals("")) {
                         speechManager.startSpeak(stringSpeechRecognition);
-                        // String s = bot1session.think(stringSpeechRecognition);
-                        // sleep(1000);
-                        // speechManager.startSpeak(s);
-                        //hardWareManager.setLED(new LED(LED.PART_ALL,LED.MODE_FLICKER_RANDOM));
+                        hardWareManager.setLED(new LED(LED.PART_ALL,LED.MODE_FLICKER_RANDOM));
                         stringSpeechRecognition = "";
                     }
                     sleep(500);
@@ -158,40 +130,6 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
             }
         }
     }
-
-    class TaskFace implements Runnable {
-        @Override
-        public void run() {
-            while(true) {
-
-                //hardWareManager.setLED(new LED(LED.PART_ALL,LED.MODE_FLICKER_RANDOM));
-
-                handMotionManager.doRelativeAngleMotion(new RelativeAngleHandMotion(NoAngleHandMotion.PART_LEFT, 10, RelativeAngleHandMotion.ACTION_UP, 180));
-
-                handMotionManager.doRelativeAngleMotion(new RelativeAngleHandMotion(NoAngleHandMotion.PART_RIGHT, 10, RelativeAngleHandMotion.ACTION_DOWN, 120));
-
-                sleep(2000);
-
-                //hardWareManager.setLED(new LED(LED.PART_ALL,LED.MODE_FLICKER_RANDOM));
-
-                handMotionManager.doRelativeAngleMotion(new RelativeAngleHandMotion(NoAngleHandMotion.PART_LEFT, 10, RelativeAngleHandMotion.ACTION_DOWN, 100));
-
-                handMotionManager.doRelativeAngleMotion(new RelativeAngleHandMotion(NoAngleHandMotion.PART_RIGHT, 10, RelativeAngleHandMotion.ACTION_UP, 120));
-
-                sleep(2000);
-
-                //hardWareManager.setLED(new LED(LED.PART_ALL,LED.MODE_FLICKER_RANDOM));
-
-                handMotionManager.doRelativeAngleMotion(new RelativeAngleHandMotion(NoAngleHandMotion.PART_LEFT, 10, RelativeAngleHandMotion.ACTION_UP, 80));
-
-                handMotionManager.doRelativeAngleMotion(new RelativeAngleHandMotion(NoAngleHandMotion.PART_RIGHT, 10, RelativeAngleHandMotion.ACTION_DOWN, 120));
-
-                sleep(2000);
-
-            }
-        }
-    }
-
 
     private void sleep(int time) {
         try {
@@ -240,12 +178,12 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
             }
         });
 
-        /*hardWareManager.setOnHareWareListener(new InfrareListener() {
+        hardWareManager.setOnHareWareListener(new InfrareListener() {
             @Override
             public void infrareDistance(int part, int distance) {
 
             }
-        });*/
+        });
 
         mediaManager.setMediaListener(new FaceRecognizeListener() {
             @Override
@@ -268,7 +206,7 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
     @Override
     protected void onStop() {
         // To prevent a memory leak on rotation, make sure to call stopAutoCycle() on the slider before activity or fragment is destroyed
-        //mDemoSlider.stopAutoCycle();
+        mDemoSlider.stopAutoCycle();
         super.onStop();
     }
 
@@ -287,14 +225,18 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            /*case R.id.action_loop:
+            case R.id.action_video_test:
+                Intent intentVideoTest = new Intent(this, VideoTestActivity.class);
+                startActivity(intentVideoTest);
+                break;
+            case R.id.action_loop:
                 if(thRobot.isInterrupted()) {
                     thRobot.start();
                 }
                 else {
                     thRobot.interrupt();
                 }
-                break;*/
+                break;
             case R.id.action_sanbot:
                 Intent browserIntent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://en.sanbot.com/index.html"));
                 startActivity(browserIntent1);
@@ -302,10 +244,6 @@ public class MainActivity extends TopBaseActivity implements BaseSliderView.OnSl
             case R.id.action_mv:
                 Intent browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.mundos-virtuales.com/"));
                 startActivity(browserIntent2);
-                break;
-            case R.id.action_sv:
-                Intent sensorActivity = new Intent(this, SensorsViewerActivity.class);
-                startActivity(sensorActivity);
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mundos_virtuales.sanbotmv.VideoTestActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="720px"
+        android:orientation="horizontal"
+        tools:ignore="PxUsage">
+        <SurfaceView
+            android:id="@+id/sv_media"
+            android:layout_width="1290px"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/image_view_test"
+            android:layout_width="630px"
+            android:layout_height="match_parent"
+            android:contentDescription=""
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/info_video"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/Salida" />
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/video_test_back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/btn_video_test_back"
+            tools:ignore="ButtonStyle,NestedWeights" />
+        <Button
+            android:id="@+id/video_test_capture"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/capture"
+            tools:ignore="ButtonStyle" />
+    </LinearLayout>
+</LinearLayout>

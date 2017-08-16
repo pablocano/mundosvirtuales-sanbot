@@ -3,21 +3,22 @@
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 tools:context="com.mundos_virtuales.sanbotmv.MainActivity" >
-<item android:id="@+id/action_loop"
-    android:orderInCategory="100"
+    <item
+        android:id="@+id/action_video_test"
+        android:orderInCategory="100"
+        android:title="@string/video_test" />
+    <item android:id="@+id/action_loop"
+    android:orderInCategory="101"
     app:showAsAction="never"
-    android:title="toggle loop"/>
+    android:title="@string/toggle_loop"/>
 <item android:id="@+id/action_sanbot"
-    android:orderInCategory="100"
+    android:orderInCategory="101"
     app:showAsAction="never"
-    android:title="About Sanbot"/>
+    android:title="@string/about_sanbot"/>
 <item android:id="@+id/action_mv"
-    android:orderInCategory="100"
+    android:orderInCategory="101"
     app:showAsAction="never"
-    android:title="About Mundos Virtuales"/>
-<item
-    android:id="@+id/action_sv"
-    android:orderInCategory="100"
-    app:showAsAction="never"
-    android:title="Sensors Viewer"/>
+    android:title="@string/about_mundos_virtuales"
+    >
+</item>
 </menu>
