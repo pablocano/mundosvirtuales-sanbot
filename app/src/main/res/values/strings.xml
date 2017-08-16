@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SanbotMV</string>
+    <string name="sensor_back_button">Back</string>
 </resources>

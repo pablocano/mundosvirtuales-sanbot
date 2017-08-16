@@ -23,6 +23,7 @@
                 android:name="RECOGNIZE_MODE"
                 android:value="1" />
         </activity>
+        <activity android:name=".SensorsViewerActivity"></activity>
     </application>
 
 </manifest>

@@ -14,7 +14,10 @@ tools:context="com.mundos_virtuales.sanbotmv.MainActivity" >
 <item android:id="@+id/action_mv"
     android:orderInCategory="100"
     app:showAsAction="never"
-    android:title="About Mundos Virtuales"
-    >
-</item>
+    android:title="About Mundos Virtuales"/>
+<item
+    android:id="@+id/action_sv"
+    android:orderInCategory="100"
+    app:showAsAction="never"
+    android:title="Sensors Viewer"/>
 </menu>
