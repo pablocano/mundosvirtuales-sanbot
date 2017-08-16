@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-xmlns:custom="http://schemas.android.com/apk/res-auto"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context="com.mundos_virtuales.sanbotmv.MainActivity">
-<com.daimajia.slider.library.SliderLayout
-    android:id="@+id/slider"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    custom:pager_animation="Accordion"
-    custom:auto_cycle="true"
-    custom:indicator_visibility="visible"
-    custom:pager_animation_span="1100"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent"
+    tools:context="com.mundos_virtuales.sanbotmv.MainActivity"
+    android:background="@drawable/bg_main"
+    android:orientation="vertical">
 
-</RelativeLayout>
+</LinearLayout>
