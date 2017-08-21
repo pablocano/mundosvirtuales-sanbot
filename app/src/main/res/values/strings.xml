@@ -7,4 +7,17 @@
     <string name="btn_video_test_back">Volver</string>
     <string name="capture">Capturar</string>
     <string name="Salida">Salida:</string>
+    <string name="rcStrBtnOkRut">Ingresar</string>
+    <string name="rcStrRut">Rut</string>
+    <string name="rcStrNumAttention">Sacar Número de atención</string>
+    <string name="rcStrEvalAttention">Evaluación Atención</string>
+    <string name="rcStrMap">Mapa Sucursal</string>
+    <string name="rcStrOption1">Opción 1</string>
+    <string name="rcStrOption2">Opción 2</string>
+    <string name="rcStrOption3">Opción 3</string>
+    <string name="rcStrOption4">Opción 4</string>
+    <string name="rcStrOptionReturn">Volver</string>
+    <string name="rcStrOptionCancel">Cancelar</string>
+    <string name="rcStrGetNumber">Imprimir Número</string>
+    <string name="rcStrGetNumberMap">Ver Mapa</string>
 </resources>

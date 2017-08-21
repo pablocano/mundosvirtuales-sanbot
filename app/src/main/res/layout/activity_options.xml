@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context="com.mundos_virtuales.sanbotmv.OptionsActivity">
+
+    <Button
+        android:id="@+id/btnOption1"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:theme="@style/ButtonPrincipal"
+        android:text="@string/rcStrOption1" />
+
+    <Button
+        android:id="@+id/btnOption2"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:theme="@style/ButtonPrincipal"
+        android:text="@string/rcStrOption2" />
+
+    <Button
+        android:id="@+id/btnOption3"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:theme="@style/ButtonPrincipal"
+        android:text="@string/rcStrOption3" />
+
+    <Button
+        android:id="@+id/btnOption4"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:theme="@style/ButtonPrincipal"
+        android:text="@string/rcStrOption4" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnOptionReturn"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:theme="@style/ButtonPrincipal"
+            android:text="@string/rcStrOptionReturn" />
+
+        <Button
+            android:id="@+id/btnOptionCancel"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:theme="@style/ButtonPrincipal"
+            android:text="@string/rcStrOptionCancel" />
+
+    </LinearLayout>
+
+</LinearLayout>

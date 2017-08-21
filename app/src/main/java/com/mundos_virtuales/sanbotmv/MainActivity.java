@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.qihancloud.opensdk.base.TopBaseActivity;
 import com.qihancloud.opensdk.beans.FuncConstant;
@@ -31,7 +29,26 @@ import com.qihancloud.opensdk.function.unit.interfaces.speech.WakenListener;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MainActivity extends TopBaseActivity {
+
+    @OnClick(R.id.btnNumAttention)
+    public void onNumAttention() {
+        Intent intentNumAttention = new Intent(this, EnterUserActivity.class);
+        startActivity(intentNumAttention);
+    }
+
+    @OnClick(R.id.btnMap)
+    public void onMap() {
+
+    }
+
+    @OnClick(R.id.btnEvalAttention)
+    public void onEvalAttention() {
+
+    }
 
     String stringSpeechRecognition = "";
 
@@ -61,6 +78,8 @@ public class MainActivity extends TopBaseActivity {
         modularMotionManager = (ModularMotionManager) getUnitManager(FuncConstant.MODULARMOTION_MANAGER);
 
         mediaManager = (MediaManager) getUnitManager(FuncConstant.MEDIA_MANAGER);
+
+        ButterKnife.bind(this);
 
         initListener();
 
