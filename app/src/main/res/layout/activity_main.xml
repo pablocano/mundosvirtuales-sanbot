@@ -14,23 +14,26 @@
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:theme="@style/ButtonPrincipal"
-        android:text="@string/rcStrNumAttention" />
+        android:text="@string/rcStrNumAttention"
+        android:textSize="18sp"
+        android:theme="@style/ButtonPrincipal" />
 
     <Button
         android:id="@+id/btnMap"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:theme="@style/ButtonPrincipal"
-        android:text="@string/rcStrMap" />
+        android:text="@string/rcStrMap"
+        android:textSize="18sp"
+        android:theme="@style/ButtonPrincipal" />
 
     <Button
         android:id="@+id/btnEvalAttention"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:theme="@style/ButtonPrincipal"
-        android:text="@string/rcStrEvalAttention" />
+        android:text="@string/rcStrEvalAttention"
+        android:textSize="18sp"
+        android:theme="@style/ButtonPrincipal" />
 
 </LinearLayout>

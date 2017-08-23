@@ -14,32 +14,36 @@
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:theme="@style/ButtonPrincipal"
-        android:text="@string/rcStrOption1" />
+        android:text="@string/rcStrOption1"
+        android:textSize="18sp"
+        android:theme="@style/ButtonPrincipal" />
 
     <Button
         android:id="@+id/btnOption2"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:theme="@style/ButtonPrincipal"
-        android:text="@string/rcStrOption2" />
+        android:text="@string/rcStrOption2"
+        android:textSize="18sp"
+        android:theme="@style/ButtonPrincipal" />
 
     <Button
         android:id="@+id/btnOption3"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:theme="@style/ButtonPrincipal"
-        android:text="@string/rcStrOption3" />
+        android:text="@string/rcStrOption3"
+        android:textSize="18sp"
+        android:theme="@style/ButtonPrincipal" />
 
     <Button
         android:id="@+id/btnOption4"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:theme="@style/ButtonPrincipal"
-        android:text="@string/rcStrOption4" />
+        android:text="@string/rcStrOption4"
+        android:textSize="18sp"
+        android:theme="@style/ButtonPrincipal" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -59,7 +63,7 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:theme="@style/ButtonPrincipal"
-            android:text="@string/rcStrOptionCancel" />
+            android:text="@string/rcStrCancel" />
 
     </LinearLayout>
 

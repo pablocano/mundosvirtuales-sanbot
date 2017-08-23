@@ -16,6 +16,12 @@ public class EnterUserActivity  extends TopBaseActivity {
     @Bind(R.id.etRut)
     EditText etRut;
 
+    @OnClick(R.id.btnOkRutCancel)
+    public void onCancel(){
+        Intent intentMainActivity = new Intent(this, MainActivity.class);
+        startActivity(intentMainActivity);
+    }
+
     @OnClick(R.id.btnOkRut)
     public void onOkRut() {
         String rut = etRut.getText().toString();

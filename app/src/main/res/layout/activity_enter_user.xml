@@ -21,9 +21,11 @@
         <TextView
             android:id="@+id/tvRut"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="44dp"
             android:layout_gravity="center_horizontal"
-            android:text="@string/rcStrRut" />
+            android:gravity="center_vertical"
+            android:text="@string/rcStrRut"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/etRut"
@@ -31,6 +33,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             tools:ignore="LabelFor"
+            android:digits="0123456789 -."
             android:layout_gravity="center_horizontal"/>
 
         <Button
@@ -40,6 +43,14 @@
             android:layout_gravity="center_horizontal"
             android:theme="@style/ButtonPrincipal"
             android:text="@string/rcStrBtnOkRut"/>
+
+        <Button
+            android:id="@+id/btnOkRutCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:theme="@style/ButtonPrincipal"
+            android:text="@string/rcStrCancel"/>
     </LinearLayout>
 
 </LinearLayout>

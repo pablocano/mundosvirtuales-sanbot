@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import com.qihancloud.opensdk.base.TopBaseActivity;
 import com.qihancloud.opensdk.beans.FuncConstant;
@@ -36,13 +37,14 @@ public class MainActivity extends TopBaseActivity {
 
     @OnClick(R.id.btnNumAttention)
     public void onNumAttention() {
-        Intent intentNumAttention = new Intent(this, EnterUserActivity.class);
-        startActivity(intentNumAttention);
+        Intent intent = new Intent(this, EnterUserActivity.class);
+        startActivity(intent);
     }
 
     @OnClick(R.id.btnMap)
     public void onMap() {
-
+        Intent intent = new Intent(this, ActivityListArticles.class);
+        startActivity(intent);
     }
 
     @OnClick(R.id.btnEvalAttention)
@@ -68,6 +70,9 @@ public class MainActivity extends TopBaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
+                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         speechManager = (SpeechManager) getUnitManager(FuncConstant.SPEECH_MANAGER);
         hardWareManager = (HardWareManager) getUnitManager(FuncConstant.HARDWARE_MANAGER);
@@ -200,10 +205,6 @@ public class MainActivity extends TopBaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            /*case R.id.action_video_test:
-                Intent intentVideoTest = new Intent(this, VideoTestActivity.class);
-                startActivity(intentVideoTest);
-                break;*/
             case R.id.action_loop:
                 if(thRobot.isInterrupted()) {
                     thRobot.start();

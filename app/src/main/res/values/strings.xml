@@ -8,7 +8,7 @@
     <string name="capture">Capturar</string>
     <string name="Salida">Salida:</string>
     <string name="rcStrBtnOkRut">Ingresar</string>
-    <string name="rcStrRut">Rut</string>
+    <string name="rcStrRut">Rut:</string>
     <string name="rcStrNumAttention">Sacar Número de atención</string>
     <string name="rcStrEvalAttention">Evaluación Atención</string>
     <string name="rcStrMap">Mapa Sucursal</string>
@@ -17,7 +17,11 @@
     <string name="rcStrOption3">Opción 3</string>
     <string name="rcStrOption4">Opción 4</string>
     <string name="rcStrOptionReturn">Volver</string>
-    <string name="rcStrOptionCancel">Cancelar</string>
+    <string name="rcStrCancel">Cancelar</string>
     <string name="rcStrGetNumber">Imprimir Número</string>
     <string name="rcStrGetNumberMap">Ver Mapa</string>
+    <string name="titulo_actividad_detalle"/>
+    <string name="lorem">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </string>
 </resources>

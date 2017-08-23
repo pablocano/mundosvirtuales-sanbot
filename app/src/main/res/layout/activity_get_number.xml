@@ -23,9 +23,9 @@
         android:layout_width="wrap_content"
         android:layout_height="400px"
         android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
         android:text="----"
-        android:textSize="148sp"
-        />
+        android:textSize="148sp" />
 
     <TextView
         android:id="@+id/tvFooterGetNumber"
@@ -39,9 +39,10 @@
     <Button
         android:id="@+id/btnGetNumber"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:theme="@style/ButtonPrincipal"
-        android:text="@string/rcStrGetNumber" />
+        android:layout_height="80dp"
+        android:text="@string/rcStrGetNumber"
+        android:textSize="18sp"
+        android:theme="@style/ButtonPrincipal" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -68,7 +69,7 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:theme="@style/ButtonPrincipal"
-            android:text="@string/rcStrOptionCancel" />
+            android:text="@string/rcStrCancel" />
 
     </LinearLayout>
 
