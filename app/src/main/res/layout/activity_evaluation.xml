@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context="com.mundos_virtuales.sanbotmv.EvaluationActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:gravity="top"
+            android:src="@drawable/logo_mv" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:textSize="48sp"
+        android:textAlignment="center"
+        android:text="¿Cuál es tu evaluación de nuestro servicio?"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/sad_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/ivSadOption"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:src="@drawable/sad_face"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textAlignment="center"
+                android:text="Regular"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/normal_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/ivNormalOption"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:src="@drawable/normal_face"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textAlignment="center"
+                android:text="Aceptable"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/happy_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/ivHappyOption"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:src="@drawable/happy_face"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textAlignment="center"
+                android:text="Buena"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/very_happy_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/ivveryHappyOption"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:src="@drawable/very_happy_face"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textAlignment="center"
+                android:text="Excelente"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnGetNumberReturn"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:theme="@style/ButtonPrincipal"
+            android:text="@string/rcStrOptionReturn" />
+
+    </LinearLayout>
+
+</LinearLayout>
+

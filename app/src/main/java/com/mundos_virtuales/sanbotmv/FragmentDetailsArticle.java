@@ -1,5 +1,6 @@
 package com.mundos_virtuales.sanbotmv;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mundos_virtuales.sanbotmv.models.ModelArticles;
+
+import butterknife.OnClick;
 
 /**
  * Fragmento que representa el panel del detalle de un artículo.

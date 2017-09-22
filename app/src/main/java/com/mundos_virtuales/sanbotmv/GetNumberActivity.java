@@ -3,10 +3,13 @@ package com.mundos_virtuales.sanbotmv;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.qihancloud.opensdk.base.TopBaseActivity;
+import com.qihancloud.opensdk.beans.FuncConstant;
+import com.qihancloud.opensdk.function.unit.SystemManager;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -48,14 +51,18 @@ public class GetNumberActivity extends TopBaseActivity {
 
     @OnClick(R.id.btnGetNumberMap)
     public void onMap(){
-        Intent intentMainActivity = new Intent(this, MainActivity.class);
-        startActivity(intentMainActivity);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        ((SystemManager) getUnitManager(FuncConstant.SYSTEM_MANAGER)).switchFloatBar(false, MainActivity.class.getName());
+        startActivity(intent);
     }
 
     @OnClick(R.id.btnGetNumberCancel)
     public void onCancel(){
-        Intent intentMainActivity = new Intent(this, MainActivity.class);
-        startActivity(intentMainActivity);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        ((SystemManager) getUnitManager(FuncConstant.SYSTEM_MANAGER)).switchFloatBar(false, MainActivity.class.getName());
+        startActivity(intent);
     }
 
     @OnClick(R.id.btnGetNumberReturn)
@@ -67,6 +74,11 @@ public class GetNumberActivity extends TopBaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_number);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
+                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        ((SystemManager) getUnitManager(FuncConstant.SYSTEM_MANAGER)).switchFloatBar(false, GetNumberActivity.class.getName());
 
         ButterKnife.bind(this);
 

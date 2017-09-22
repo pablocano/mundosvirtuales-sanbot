@@ -4,46 +4,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:gravity="center"
+
     android:orientation="vertical"
     android:padding="20dp"
     tools:context="com.mundos_virtuales.sanbotmv.OptionsActivity">
 
-    <Button
-        android:id="@+id/btnOption1"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/rcStrOption1"
-        android:textSize="18sp"
-        android:theme="@style/ButtonPrincipal" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnOption2"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/rcStrOption2"
-        android:textSize="18sp"
-        android:theme="@style/ButtonPrincipal" />
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:gravity="top"
+            android:src="@drawable/logo_mv" />
 
-    <Button
-        android:id="@+id/btnOption3"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/rcStrOption3"
-        android:textSize="18sp"
-        android:theme="@style/ButtonPrincipal" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnOption4"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/rcStrOption4"
-        android:textSize="18sp"
-        android:theme="@style/ButtonPrincipal" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnOption1"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/rcStrOption1"
+            android:textSize="18sp"
+            android:theme="@style/ButtonPrincipal" />
+
+        <Button
+            android:id="@+id/btnOption2"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/rcStrOption2"
+            android:textSize="18sp"
+            android:theme="@style/ButtonPrincipal" />
+
+        <Button
+            android:id="@+id/btnOption3"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/rcStrOption3"
+            android:textSize="18sp"
+            android:theme="@style/ButtonPrincipal" />
+
+        <Button
+            android:id="@+id/btnOption4"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/rcStrOption4"
+            android:textSize="18sp"
+            android:theme="@style/ButtonPrincipal" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"

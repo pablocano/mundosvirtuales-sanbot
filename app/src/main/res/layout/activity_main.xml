@@ -4,36 +4,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp"
     tools:context="com.mundos_virtuales.sanbotmv.MainActivity">
 
-    <Button
-        android:id="@+id/btnNumAttention"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/rcStrNumAttention"
-        android:textSize="18sp"
-        android:theme="@style/ButtonPrincipal" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnMap"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/rcStrMap"
-        android:textSize="18sp"
-        android:theme="@style/ButtonPrincipal" />
+        <ImageView
+            android:id="@+id/ivLogoMV"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:gravity="top"
+            android:src="@drawable/logo_mv" />
 
-    <Button
-        android:id="@+id/btnEvalAttention"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/rcStrEvalAttention"
-        android:textSize="18sp"
-        android:theme="@style/ButtonPrincipal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnNumAttention"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/rcStrNumAttention"
+            android:textSize="18sp"
+            android:theme="@style/ButtonPrincipal" />
+
+        <Button
+            android:id="@+id/btnMap"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/rcStrMap"
+            android:textSize="18sp"
+            android:theme="@style/ButtonPrincipal" />
+
+        <Button
+            android:id="@+id/btnEvalAttention"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/rcStrEvalAttention"
+            android:textSize="18sp"
+            android:theme="@style/ButtonPrincipal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnVoice"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="MIC"
+            android:theme="@style/ButtonPrincipal"/>
+        <TextView
+            android:id="@+id/tvVoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp" />
+    </LinearLayout>
 
 </LinearLayout>

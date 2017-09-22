@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.qihancloud.opensdk.base.TopBaseActivity;
 import com.qihancloud.opensdk.beans.FuncConstant;
@@ -28,12 +29,46 @@ import com.qihancloud.opensdk.function.unit.interfaces.speech.RecognizeListener;
 import com.qihancloud.opensdk.function.unit.interfaces.speech.SpeakListener;
 import com.qihancloud.opensdk.function.unit.interfaces.speech.WakenListener;
 
-import java.util.List;
+import com.google.code.chatterbotapi.*;
 
+import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
 public class MainActivity extends TopBaseActivity {
+
+    Boolean bVoiceRec = false;
+
+    ConcurrentLinkedQueue<String> queueVoice = new ConcurrentLinkedQueue<String>();
+
+    Thread thProcessVoice;
+
+    SpeechManager speechManager;
+    HardWareManager hardWareManager;
+    HeadMotionManager headMotionManager;
+    HandMotionManager handMotionManager;
+    WheelMotionManager wheelMotionManager;
+    SystemManager systemManager;
+    ModularMotionManager modularMotionManager;
+
+    MediaManager mediaManager;
+
+    @Bind(R.id.tvVoice)
+    TextView tvVoice;
+
+    @OnClick(R.id.ivLogoMV)
+    public void onExit(){
+        this.finish();
+    }
+
+    @OnClick(R.id.btnVoice)
+    public void onVoice(){
+        bVoiceRec = !bVoiceRec;
+    }
 
     @OnClick(R.id.btnNumAttention)
     public void onNumAttention() {
@@ -49,22 +84,9 @@ public class MainActivity extends TopBaseActivity {
 
     @OnClick(R.id.btnEvalAttention)
     public void onEvalAttention() {
-
+        Intent intent = new Intent(this, EvaluationActivity.class);
+        startActivity(intent);
     }
-
-    String stringSpeechRecognition = "";
-
-    Thread thRobot;
-
-    SpeechManager speechManager;
-    HardWareManager hardWareManager;
-    HeadMotionManager headMotionManager;
-    HandMotionManager handMotionManager;
-    WheelMotionManager wheelMotionManager;
-    SystemManager systemManager;
-    ModularMotionManager modularMotionManager;
-
-    MediaManager mediaManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +95,8 @@ public class MainActivity extends TopBaseActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        ((SystemManager) getUnitManager(FuncConstant.SYSTEM_MANAGER)).switchFloatBar(false, MainActivity.class.getName());
 
         speechManager = (SpeechManager) getUnitManager(FuncConstant.SPEECH_MANAGER);
         hardWareManager = (HardWareManager) getUnitManager(FuncConstant.HARDWARE_MANAGER);
@@ -86,34 +110,46 @@ public class MainActivity extends TopBaseActivity {
 
         ButterKnife.bind(this);
 
-        initListener();
+        thProcessVoice = new Thread(new ProcessVoice());
 
-        thRobot = new Thread(new TaskRobot());
+        initListener();
     }
 
     @Override
     protected void onMainServiceConnected() {
-        thRobot.start();
+        speechManager.doSleep();
+        speechManager.doWakeUp();
+        thProcessVoice.start();
     }
 
 
-    class TaskRobot implements Runnable {
+    class ProcessVoice implements Runnable {
+
         @Override
         public void run() {
-            while(true) {
-                try{
-                    speechManager.doWakeUp();
+            try{
 
-                    if(!stringSpeechRecognition.equals("")) {
-                        speechManager.startSpeak(stringSpeechRecognition);
-                        hardWareManager.setLED(new LED(LED.PART_ALL,LED.MODE_FLICKER_RANDOM));
-                        stringSpeechRecognition = "";
+                ChatterBotFactory factory = new ChatterBotFactory();
+
+                ChatterBot bot1 = factory.create(ChatterBotType.PANDORABOTS, "b0dafd24ee35a477");
+                ChatterBotSession bot1session = bot1.createSession();
+
+                // hardWareManager.setLED(new LED(LED.PART_ALL,LED.MODE_FLICKER_RANDOM));
+
+                while(true) {
+                    synchronized (queueVoice){
+                        while(queueVoice.isEmpty()) {
+                            queueVoice.wait();
+                        }
+
+                        String s1 = queueVoice.remove();
+                        String s2 = bot1session.think(s1);
+                        speechManager.startSpeak(s2);
                     }
-                    sleep(500);
-                }catch(Exception e)
-                {
-                    return;
                 }
+            }catch(Exception e)
+            {
+                queueVoice.clear();
             }
         }
     }
@@ -143,7 +179,12 @@ public class MainActivity extends TopBaseActivity {
         speechManager.setOnSpeechListener(new RecognizeListener() {
             @Override
             public boolean onRecognizeResult(Grammar grammar) {
-                stringSpeechRecognition = grammar.getText();
+                synchronized (queueVoice) {
+                    String s = grammar.getText();
+                    tvVoice.setText(s);
+                    queueVoice.add(s);
+                    queueVoice.notify();
+                }
                 return true;
             }
 
@@ -205,14 +246,6 @@ public class MainActivity extends TopBaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.action_loop:
-                if(thRobot.isInterrupted()) {
-                    thRobot.start();
-                }
-                else {
-                    thRobot.interrupt();
-                }
-                break;
             case R.id.action_sanbot:
                 Intent browserIntent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://en.sanbot.com/index.html"));
                 startActivity(browserIntent1);

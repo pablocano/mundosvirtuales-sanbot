@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp"
     tools:context="com.mundos_virtuales.sanbotmv.EnterUserActivity">
@@ -12,45 +11,191 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:padding="20dp"
-        android:orientation="horizontal"
-        tools:ignore="UselessParent">
+        android:layout_gravity="left"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvRut"
-            android:layout_width="wrap_content"
-            android:layout_height="44dp"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_vertical"
-            android:text="@string/rcStrRut"
-            android:textSize="24sp" />
-
-        <EditText
-            android:id="@+id/etRut"
+        <ImageView
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            tools:ignore="LabelFor"
-            android:digits="0123456789 -."
-            android:layout_gravity="center_horizontal"/>
+            android:layout_height="150dp"
+            android:gravity="top"
+            android:src="@drawable/logo_mv" />
 
-        <Button
-            android:id="@+id/btnOkRut"
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="700dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:padding="20dp"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/tvRutLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:text="@string/rcStrRut"
+                android:textSize="32sp" />
+
+            <TextView
+                android:id="@+id/tvRut"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                android:textAlignment="center"
+                android:layout_gravity="center_vertical"/>
+
+            <Button
+                android:id="@+id/btnOkRut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:theme="@style/ButtonPrincipal"
+                android:textSize="18sp"
+                android:text="@string/rcStrBtnOkRut"/>
+
+            <Button
+                android:id="@+id/btnOkRutCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:theme="@style/ButtonPrincipal"
+                android:textSize="18sp"
+                android:text="@string/rcStrCancel"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:theme="@style/ButtonPrincipal"
-            android:text="@string/rcStrBtnOkRut"/>
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnRut1"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:theme="@style/ButtonPrincipal"
+                    android:textSize="24sp"
+                    android:text="1"/>
+                <Button
+                    android:id="@+id/btnRut2"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:theme="@style/ButtonPrincipal"
+                    android:textSize="24sp"
+                    android:text="2"/>
+                <Button
+                    android:id="@+id/btnRut3"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:theme="@style/ButtonPrincipal"
+                    android:textSize="24sp"
+                    android:text="3"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnRut4"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:theme="@style/ButtonPrincipal"
+                    android:textSize="24sp"
+                    android:text="4"/>
+                <Button
+                    android:id="@+id/btnRut5"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:theme="@style/ButtonPrincipal"
+                    android:textSize="24sp"
+                    android:text="5"/>
+                <Button
+                    android:id="@+id/btnRut6"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:theme="@style/ButtonPrincipal"
+                    android:textSize="24sp"
+                    android:text="6"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnRut7"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:theme="@style/ButtonPrincipal"
+                    android:textSize="24sp"
+                    android:text="7"/>
+                <Button
+                    android:id="@+id/btnRut8"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:theme="@style/ButtonPrincipal"
+                    android:textSize="24sp"
+                    android:text="8"/>
+                <Button
+                    android:id="@+id/btnRut9"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:theme="@style/ButtonPrincipal"
+                    android:textSize="24sp"
+                    android:text="9"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnRutMinus"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:theme="@style/ButtonPrincipal"
+                    android:textSize="24sp"
+                    android:text="-"/>
+                <Button
+                    android:id="@+id/btnRut0"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:theme="@style/ButtonPrincipal"
+                    android:textSize="24sp"
+                    android:text="0"/>
+                <Button
+                    android:id="@+id/btnRutK"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:theme="@style/ButtonPrincipal"
+                    android:textSize="24sp"
+                    android:text="K"/>
+            </LinearLayout>
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/btnOkRutCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:theme="@style/ButtonPrincipal"
-            android:text="@string/rcStrCancel"/>
     </LinearLayout>
 
 </LinearLayout>

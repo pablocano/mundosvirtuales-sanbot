@@ -2,46 +2,59 @@ package com.mundos_virtuales.sanbotmv;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.WindowManager;
 
 import com.mundos_virtuales.sanbotmv.models.ModelArticles;
+import com.qihancloud.opensdk.base.TopBaseActivity;
+import com.qihancloud.opensdk.beans.FuncConstant;
+import com.qihancloud.opensdk.function.unit.SystemManager;
 
-/**
- * Actividad con la lista de artículos. Si el ancho del dispositivo es mayor o igual a 900dp, entonces
- * se incrusta el fragmento de detalle {@link FragmentDetailsArticle} para generar el patrón
- * Master-detail
- */
-public class ActivityListArticles extends AppCompatActivity
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+
+public class ActivityListArticles extends TopBaseActivity
         implements FragmentListArticles.EscuchaFragmento {
 
-    // ¿Hay dos paneles?
-    private boolean dosPaneles;
+    private boolean mTwoPanels;
+
+    @OnClick(R.id.btnFragDetailArticleCancel)
+    public void onCancel() {
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        ((SystemManager) getUnitManager(FuncConstant.SYSTEM_MANAGER)).switchFloatBar(false, MainActivity.class.getName());
+        startActivity(intent);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_articles);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+        ((SystemManager) getUnitManager(FuncConstant.SYSTEM_MANAGER)).switchFloatBar(false, ActivityListArticles.class.getName());
+
+        ButterKnife.bind(this);
+
         ((Toolbar) findViewById(R.id.toolbar)).setTitle(getTitle());
 
-        // Verificación: ¿Existe el detalle en el layout?
         if (findViewById(R.id.contenedor_detalle_articulo) != null) {
-            // Si es asi, entonces confirmar modo Master-Detail
-            dosPaneles = true;
-
+            mTwoPanels = true;
             cargarFragmentoDetalle(ModelArticles.ITEMS.get(0).id);
         }
 
-        // Agregar fragmento de lista
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.contenedor_lista, FragmentListArticles.crear())
                 .commit();
+
+    }
+
+    @Override
+    protected void onMainServiceConnected() {
 
     }
 
@@ -58,7 +71,7 @@ public class ActivityListArticles extends AppCompatActivity
 
     @Override
     public void alSeleccionarItem(String idArticulo) {
-        if (dosPaneles) {
+        if (mTwoPanels) {
             cargarFragmentoDetalle(idArticulo);
         } else {
             Intent intent = new Intent(this, ActivityDetailsArticle.class);

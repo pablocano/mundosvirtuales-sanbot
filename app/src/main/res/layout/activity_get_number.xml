@@ -4,45 +4,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp"
     tools:context="com.mundos_virtuales.sanbotmv.OptionsActivity">
 
-    <TextView
-        android:id="@+id/tvCaptionGetNumber"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Generé su número atención"
-        android:textSize="48sp"
-        />
+        android:layout_gravity="left"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="400px"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_vertical"
-        android:text="----"
-        android:textSize="148sp" />
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:gravity="top"
+            android:src="@drawable/logo_mv" />
 
-    <TextView
-        android:id="@+id/tvFooterGetNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text=""
-        android:textSize="32sp"
-        />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnGetNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:text="@string/rcStrGetNumber"
-        android:textSize="18sp"
-        android:theme="@style/ButtonPrincipal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvCaptionGetNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Generé su número atención"
+            android:textSize="48sp"
+            />
+
+        <TextView
+            android:id="@+id/tvNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="400px"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:text="----"
+            android:textSize="148sp" />
+
+        <TextView
+            android:id="@+id/tvFooterGetNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text=""
+            android:textSize="32sp"
+            />
+
+        <Button
+            android:id="@+id/btnGetNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:text="@string/rcStrGetNumber"
+            android:textSize="18sp"
+            android:theme="@style/ButtonPrincipal" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"

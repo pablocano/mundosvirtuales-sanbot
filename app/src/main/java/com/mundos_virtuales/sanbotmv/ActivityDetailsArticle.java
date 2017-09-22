@@ -10,18 +10,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import com.qihancloud.opensdk.base.TopBaseActivity;
+import com.qihancloud.opensdk.beans.FuncConstant;
+import com.qihancloud.opensdk.function.unit.SystemManager;
+
 /**
  * Actividad que muestra el detalle del artículo seleccionado en {@link ActivityListArticles}
  */
-public class ActivityDetailsArticle extends AppCompatActivity {
+public class ActivityDetailsArticle extends TopBaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_article);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        ((SystemManager) getUnitManager(FuncConstant.SYSTEM_MANAGER)).switchFloatBar(false, ActivityDetailsArticle.class.getName());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_detalle);
         setSupportActionBar(toolbar);
@@ -46,6 +52,11 @@ public class ActivityDetailsArticle extends AppCompatActivity {
                     .add(R.id.contenedor_detalle_articulo, fragment)
                     .commit();
         }
+    }
+
+    @Override
+    protected void onMainServiceConnected() {
+
     }
 
     @Override
