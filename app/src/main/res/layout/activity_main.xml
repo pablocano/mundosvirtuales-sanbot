@@ -64,12 +64,14 @@
         android:layout_gravity="bottom"
         android:gravity="bottom"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/btnVoice"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:text="MIC"
-            android:theme="@style/ButtonPrincipal"/>
+            android:theme="@style/ButtonPrincipal" />
+
         <TextView
             android:id="@+id/tvVoice"
             android:layout_width="match_parent"

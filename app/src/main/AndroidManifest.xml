@@ -3,6 +3,10 @@
     package="com.mundos_virtuales.sanbotmv">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -10,7 +14,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:hardwareAccelerated="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,9 +25,23 @@
             <meta-data
                 android:name="FORBID_PIR"
                 android:value="true" />
+
             <meta-data
                 android:name="RECOGNIZE_MODE"
                 android:value="1" />
+
+            <meta-data
+                android:name="CONFIG_RECORD"
+                android:value="true" />
+
+            <meta-data
+                android:name="RECORD_SWITCH"
+                android:value="true" />
+
+            <meta-data
+                android:name="SPEECH_MODE"
+                android:value="1" />
+
         </activity>
         <activity android:name=".EnterUserActivity" />
         <activity android:name=".OptionsActivity" />
