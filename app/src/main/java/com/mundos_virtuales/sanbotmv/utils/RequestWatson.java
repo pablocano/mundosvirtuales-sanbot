@@ -23,16 +23,29 @@ import info.guardianproject.netcipher.NetCipher;
 
 public class RequestWatson implements Runnable {
 
-    byte[] response;
     ConcurrentLinkedQueue<String> m_queueVoice;
+    ConcurrentLinkedQueue<byte[]> m_queueBuffers = new ConcurrentLinkedQueue<byte[]>();
     private static int m_nWav = 0;
 
-    public RequestWatson(byte[] response, ConcurrentLinkedQueue<String> queueVoice){
-        this.response = response;
+    public RequestWatson(ConcurrentLinkedQueue<String> queueVoice){
         this.m_queueVoice = queueVoice;
     }
 
-    private void saveWAV() {
+    public void appendBuffer(byte[] buffer) {
+        synchronized (m_queueBuffers) {
+            m_queueBuffers.add(buffer);
+            m_queueBuffers.notifyAll();
+        }
+    }
+
+    public void clear() {
+        synchronized (m_queueBuffers) {
+            m_queueBuffers.clear();
+            m_queueBuffers.notifyAll();
+        }
+    }
+
+    private void saveWAV(byte[] responseBuffer) {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state) &&
                 !Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
@@ -42,7 +55,7 @@ public class RequestWatson implements Runnable {
 
             try {
                 FileOutputStream fis = new FileOutputStream (new File(filename));
-                fis.write(this.response);
+                fis.write(responseBuffer);
                 fis.flush();
                 fis.close();
             } catch (Exception e) {
@@ -54,16 +67,29 @@ public class RequestWatson implements Runnable {
     @Override
     public void run() {
 
-        //saveWAV();
+        while(true) {
+            try {
+                synchronized (m_queueBuffers) {
+                    while (m_queueBuffers.isEmpty()) {
+                        m_queueBuffers.wait();
+                    }
+                }
 
-        String result = getResponseWatson(this.response);
-        final Gson gson = new Gson();
-        ResponseWatson response = gson.fromJson(result, ResponseWatson.class);
+                byte[] responseBuffer = m_queueBuffers.remove();
+                saveWAV(responseBuffer);
+                String result = getResponseWatson(responseBuffer);
 
-        synchronized (m_queueVoice) {
-            if(response.getConfidence() > 0.5) {
-                m_queueVoice.add(response.getOutput());
-                m_queueVoice.notifyAll();
+                final Gson gson = new Gson();
+                ResponseWatson response = gson.fromJson(result, ResponseWatson.class);
+
+                synchronized (m_queueVoice) {
+                    if(response.getConfidence() > 0.5) {
+                        m_queueVoice.add(response.getOutput());
+                        m_queueVoice.notifyAll();
+                    }
+                }
+            } catch (Exception e) {
+
             }
         }
     }

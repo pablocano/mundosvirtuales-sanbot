@@ -18,32 +18,14 @@ public class VoiceActivityDetector {
     private static final int MAX_CZ = 300;
 
     private SpeechEventsListener eventsListener;
-
     private double noiseEnergy = 0.0;
-
     private long lastActiveTime = -1;
-
-    /**
-     * last time active frame hit sequence.
-     */
     private long lastSequenceTime = 0;
-
-    /**
-     * number of active frame in sequence.
-     */
     private int sequenceCounter = 0;
-
-    /**
-     * current processed time in millis
-     */
     private long time = 0;
-
     private int frameNumber;
-
     private long silenceMillis = MAX_SILENCE_MILLIS;
-
     private boolean speechActive = false;
-
     private double sum = 0;
     private int size = 0;
 

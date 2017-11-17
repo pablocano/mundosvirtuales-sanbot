@@ -34,6 +34,7 @@ import butterknife.OnClick;
 public class MainActivity extends TopBaseActivity {
 
     Boolean bVoiceRec = false;
+    boolean isSpeech = false;
     Thread thProcessVoice;
     MediaManager mediaManager;
 
@@ -110,6 +111,7 @@ public class MainActivity extends TopBaseActivity {
         audioRobot = audioAndroid;
 
         thProcessVoice = new Thread(new ThreadProcessVoice());
+        thProcessVoice.setPriority(Thread.MAX_PRIORITY);
 
         StreamOption streamOption = new StreamOption();
         streamOption.setChannel(StreamOption.MAIN_STREAM);
@@ -142,7 +144,7 @@ public class MainActivity extends TopBaseActivity {
                         String s = queueVoice.remove();
 
                         audioRobot.pauseRecording();
-
+                        isSpeech = true;
                         speechManager.startSpeak(s);
                     }
                 }catch(Exception e) {
@@ -155,16 +157,24 @@ public class MainActivity extends TopBaseActivity {
     private void initListener() {
 
         hardWareManager.setOnHareWareListener(new VoiceLocateListener() {
+
+            private int lastAngle = 0;
+            private final int MIN_ANGLE = 10;
+            private final int MAX_ANGLE = 180;
+
             @Override
             public void voiceLocateResult(int i) {
+                if (!isSpeech) {
+                    int angle = (i > 180 ? 360 - i : i);
+                    byte actionMove = i > 180 ? RelativeAngleHeadMotion.ACTION_LEFT : RelativeAngleHeadMotion.ACTION_RIGHT;
 
-                int angle = (i > 180 ? i - 180 : i);
-                byte actionMove = i > 180 ? RelativeAngleHeadMotion.ACTION_LEFT : RelativeAngleHeadMotion.ACTION_RIGHT;
+                    int diff_angle = Math.abs(angle - lastAngle);
 
-                RelativeAngleHeadMotion relativeAngleMotion = new RelativeAngleHeadMotion(actionMove, angle);
-
-                if (Math.abs(angle - 360) > 20) {
-                    headMotionManager.doRelativeAngleMotion(relativeAngleMotion);
+                    if (diff_angle < MAX_ANGLE && diff_angle > MIN_ANGLE) {
+                        RelativeAngleHeadMotion relativeAngleMotion = new RelativeAngleHeadMotion(actionMove, angle);
+                        headMotionManager.doRelativeAngleMotion(relativeAngleMotion);
+                        lastAngle = angle;
+                    }
                 }
             }
         });
@@ -175,6 +185,7 @@ public class MainActivity extends TopBaseActivity {
             @Override
             public void onSpeakFinish() {
                 audioRobot.resumeRecording();
+                isSpeech = false;
             }
 
             @Override

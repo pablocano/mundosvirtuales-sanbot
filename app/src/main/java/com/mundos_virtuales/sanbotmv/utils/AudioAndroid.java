@@ -11,13 +11,13 @@ public class AudioAndroid implements IAudioRobot {
 
     private int sub_chunk_lsize = 16;
     private int bits_per_sample = 16;
-    private int channels        = 2;
+    private int channels        = 1; // Mono
     private int sample_rate     = 22050; // 8000, 11025, 22050, 44100
     private float energyMean    = 1.5e6f;
 
     private AudioRecord recorder = null;
     private boolean isRecording = false;
-    private int bufferSize = AudioRecord.getMinBufferSize(2 * getSampleRate(), AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
+    private int bufferSize = AudioRecord.getMinBufferSize(getSampleRate(), AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
     private Thread recordingThread = null;
 
     private IProcessVoice processVoice;
@@ -67,7 +67,7 @@ public class AudioAndroid implements IAudioRobot {
     @Override
     public void startRecording() {
 
-        recorder = new AudioRecord(MediaRecorder.AudioSource.DEFAULT, 2 * getSampleRate(), AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, bufferSize);
+        recorder = new AudioRecord(MediaRecorder.AudioSource.DEFAULT, getSampleRate(), AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, bufferSize);
 
         try {
             recorder.startRecording();

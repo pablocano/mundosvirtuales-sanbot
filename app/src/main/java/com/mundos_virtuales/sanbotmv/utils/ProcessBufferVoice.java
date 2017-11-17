@@ -14,8 +14,18 @@ public class ProcessBufferVoice implements IProcessVoice  {
 
     private final float MIN_TIME_VOICE = 1.0f; // Seconds
 
+    private RequestWatson runnableRequestWatson;
+    private Thread thRequestWatson;
+
     public ProcessBufferVoice(ConcurrentLinkedQueue<String> queueVoice) {
         this.queueVoice = queueVoice;
+
+        runnableRequestWatson = new RequestWatson(queueVoice);
+
+        thRequestWatson = new Thread(runnableRequestWatson);
+        thRequestWatson.setPriority(Thread.MAX_PRIORITY);
+        thRequestWatson.start();
+
         this.VADetector = new VoiceActivityDetector();
 
         this.VADetector.setSpeechListener(new VoiceActivityDetector.SpeechEventsListener() {
@@ -54,14 +64,12 @@ public class ProcessBufferVoice implements IProcessVoice  {
                     byte[] output = getUPSampling(input, audioRobot);
 
                     ByteArrayOutputStream outFile = getBytesWAVFormatFile(output, audioRobot);
-
-                    new Thread(new RequestWatson(outFile.toByteArray(), queueVoice)).start();
+                    runnableRequestWatson.appendBuffer(outFile.toByteArray());
                 }
 
                 outDataWavStream.reset();
 
                 VADetector.reset();
-
             }
         }catch (IOException e) {
 
